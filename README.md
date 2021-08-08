@@ -72,8 +72,89 @@ Keras provides useful abstractions to work with multiple neural network types, l
 ### PyTorch 
 Pytorch is a recent deep learning framework backed by some prestigious organizations like Facebook, Twitter, Nvidia, Salesforce, Stanford University, University of Oxford, and Uber. It has quickly developed a strong community.
 
+## Algorithym Definition 
+I have attached the Dataset I have used for this problem in my repository. The sentiment analysis is a classification because the output should be either positive or negative. That is why I tried 2 of the classification algorithms on this data set.
+* K-Nearest Neighbours  
+* Multinomial Naive Bayes 
+
+### (i) K-Nearest Neighbours 
+A **supervised machine learning algorithm** (as opposed to an unsupervised machine learning algorithm) is one that relies on labeled input data to learn a function that produces an appropriate output when given new unlabeled data. 
+Supervised machine learning algorithms are used to solve classification or regression problems. A **classification problem** has a discrete value as its output. For example, “likes pineapple on pizza” and “does not like pineapple on pizza” are discrete. There is no middle ground.
+
+The KNN algorithm assumes that similar things exist in close proximity. In other words, similar things are near to each other. KNN captures the idea of similarity (sometimes called distance, proximity, or closeness) with some mathematics we might have learned in our childhood— calculating the distance between points on a graph. 
+There are vaious ways to calculate the distance for this Algorithm . Euclidean distance is the most popular distance metric. You can also use Hamming distance, Manhattan distance, Minkowski distance as per your need.
+In my Project I have used the MINKOWSKI distance. The Minkowski distance between two variabes X and Y is defined as
+(∑i=1n|Xi−Yi|p)1/p
+The case where p = 1 is equivalent to the Manhattan distance and the case where p = 2 is equivalent to the Euclidean distance. In my project , p=2 i.e. I have used the Euclidean Distance.
+
+### (ii) Multinomial Naive bayes 
+Multinomial Naive Bayes algorithm is a probabilistic learning method that is mostly used in Natural Language Processing (NLP). The algorithm is based on the Bayes theorem and predicts the tag of a text such as a piece of email or newspaper article. It calculates the probability of each tag for a given sample and then gives the tag with the highest probability as output.
+
+Naive Bayes classifier is a collection of many algorithms where all the algorithms share one common principle, and that is each feature being classified is not related to any other feature. The presence or absence of a feature does not affect the presence or absence of the other feature. Naive Bayes is of 3 types :
+* Multinomial Naive Bayes : Good for when your features (Categorical or Continuous) describe Discrete Frequecy Counts 
+* Bernoulli : Good for making predictions from binary features 
+* Gaussian : Good for Making predictions from Normally Distributed Data 
+
+Bayes theorem calculates probability P(c|x) where c is the class of the possible outcomes and x is the given instance which has to be classified, representing some certain features.
+***P(c|x) = P(x|c) * P(c) / P(x)***
+
+# Experimental Evaluation
+## 3.1 Methodology
+All the models were judged based on a few criteria. These criteria are also recommended by the scikit-learn website itself for the classification algorithms. The criteria are:
+
+### Accuracy score: 
+Classification Accuracy is what we usually mean when we use the term accuracy. It is the ratio of the number of correct predictions to the total number of input samples.
+
+### Confusion Matrix: 
+A confusion matrix is a table that is often used to describe the performance of a classification model (or "classifier") on a set of test data for which the true values are known. i) There are two possible predicted classes: "yes" and "no". If we were predicting the presence of a disease, for example, "yes" would mean they have the disease, and "no" would mean they don't have the disease. ii) The classifier made a total of 165 predictions (e.g., 165 patients were being tested for the presence of that disease). iii) Out of those 165 cases, the classifier predicted "yes" 110 times, and "no" 55 times. iv) In reality, 105 patients in the sample have the disease, and 60 patients do not.
+
+**true positives (TP)**: These are cases in which we predicted yes (they have the disease), and they do have the disease.
+**true negatives (TN)**: We predicted no, and they don't have the disease.
+**false positives (FP)**: We predicted yes, but they don't have the disease. (Also known as a "Type I error.")
+**false negatives (FN)**: We predicted no, but they do have the disease. (Also known as a "Type II error.")
+F1 score F1 Score is the Harmonic Mean between precision and recall. The range for F1 Score is [0, 1]. It tells you how precise your classifier is (how many instances it classifies correctly), as well as how robust it is (it does not miss a significant number of instances). High precision but lower recall, gives you an extremely accurate, but it then misses a large number of instances that are difficult to classify. The greater the F1 Score, the better is the performance of our model. Mathematically, it can be expressed as : F1 Score tries to find the balance between precision and recall.
+
+### Precision: 
+It is the number of correct positive results divided by the number of positive results predicted by the classifier.
+
+### Recall: 
+It is the number of correct positive results divided by the number of all relevant samples (all samples that should have been identified as positive).
+
+## 3.2 Result
+All of the 2 mentioned machine learning models are very measured on the above-mentioned metrics. The result of the evaluation of the metrics is mentioned below:
+
+### i) Multinomial Naive Bayes:
+
+Accuracy - 0.808
+
+### ii) KNN Classification 
+
+Accuracy - 0.701
+
+# Work 
+1. I chose a dataset which contained various Coloumns like Reviews , Reviewer Name , Rating , Time and Restaurant Name. 
+2. Then I have Preprocessed this data . A few of the important things I have done while Preprocessing is Dropping the Unnecesary coloumns , checking for any irrelevant values , Replacing the Null values with the median etc. 
+3. I have also done some Data Visualization such as plotting graphs on the basis of the Rating Provided. 
+4. I used NLTK (Natural Language Toolkit) and cleared the unwanted words in my vector. I accepted only alphabets and converted it into lower case and split it in a list. Using the PorterStemmer method stem I shorten the lookup and Normalized the sentences. Then stored those words which are not a stopword or any English punctuation.
+5. Secondly, I used CountVectorizer for vectorization. Also used fit and transform to fit and transform the model. The maximum features were 9000.
+6. I have also used the TfidfVectorizer 
+7. The next step was Training and Classification. Using train_test_split 30% of data was used for testing and remaining was used for training. 
+8. I have used algorithms like KNN classifier and Multinomial Naive Bayes.
+9. Later metrics like Confusion matrix, Accuracy, Precision, Recall were used to calculate the performance of the model.
+10. Then I have created a function to claissfy a review being passed as it's argument as positve or negative with the help of the bag of words we had created. 
+
+# Scope for Improvement 
+* Different classifier models can also be tested.
+* Try a different data set. Sometimes a data set plays a crucial role too.
+* Some other tuning parameters to improve the accuracy of the model.
+
 # Bibliography 
 * https://monkeylearn.com/sentiment-analysis/
 * https://en.wikipedia.org/wiki/Sentiment_analysis
 * https://brand24.com/blog/sentiment-analysis/
 * https://algorithmia.com/blog/introduction-sentiment-analysis
+* https://www.javatpoint.com/k-nearest-neighbor-algorithm-for-machine-learning
+* https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/minkdist.htm
+* https://www.upgrad.com/blog/multinomial-naive-bayes-explained/#:~:text=Multinomial%20Naive%20Bayes%20algorithm%20is,of%20email%20or%20newspaper%20article.
+* https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html
+* https://www.geeksforgeeks.org/python-stemming-words-with-nltk/
